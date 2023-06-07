@@ -1,19 +1,17 @@
-html, body  {
-    
+html,
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
     margin: 0;
     padding: 0;
     position: relative;
-
-
 }
 
 @font-face {
     font-family: Roboto;
-    src: url('../fonts/Roboto-Regular.woff2');
-  }
+    src: url("../fonts/Roboto-Regular.woff2");
+}
 
 #container {
     width: 100%;
@@ -22,16 +20,15 @@ html, body  {
 }
 
 #map {
-    z-index:1;
+    z-index: 1;
     position: absolute;
     top: 1%;
     left: 1%;
     width: 10%;
-
 }
 .compass_text {
     color: white;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     padding: 4px;
     padding-top: 2px;
@@ -39,13 +36,13 @@ html, body  {
     border-radius: 2px;
 }
 .compass1 {
-    z-index:1;
+    z-index: 1;
     position: absolute;
     top: 1%;
     font-family: Roboto;
     right: 0;
     left: auto;
-    width:236px;
+    width: 236px;
     height: 220px;
     flex-direction: column;
     align-items: center;
@@ -53,98 +50,82 @@ html, body  {
     /* background-color: white;   */
     border-radius: 100%;
     padding-bottom: 16px;
-    
+
     color: black;
     display: flex;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     transform: scale(0.75) translateY(-40px) translateX(30px);
-    
-    
 }
 .mapRadar {
-    z-index:1;
+    z-index: 1;
     position: absolute;
     top: 1%;
     left: 1%;
     width: 20%;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 #mapContainer {
-    z-index:1;
+    z-index: 1;
     position: absolute;
     top: 1%;
     left: 1%;
     width: 20%;
-    transition: all .3s ease-in-out;
-
+    transition: all 0.3s ease-in-out;
 }
 
-
 #map3 {
-    z-index:1;
+    z-index: 1;
     position: absolute;
     top: 0px;
     left: 1%;
     width: 13%;
-    
-    
-
 }
-.map3{
+.map3 {
     width: 17% !important;
 }
 
 .map {
     position: absolute;
     width: 70% !important;
-    left:15% !important;
+    left: 15% !important;
     top: -10% !important;
-    
 }
 
-
-
 #map1 {
-    z-index:1;
+    z-index: 1;
     position: absolute;
     top: 1%;
     left: 1%;
     width: 10%;
-
 }
 
 #radar {
-    z-index:1;
-    
+    z-index: 1;
 }
 
- .st0:hover {
+.st0:hover {
     fill: red;
-    
 }
 
-
-    
-.st0{
-    fill:#FFFFFF;
+.st0 {
+    fill: #ffffff;
 }
 .point {
     cursor: pointer;
 }
-.point:hover{
-    fill: #E85841;
+.point:hover {
+    fill: #e85841;
     transition: 600ms ease all;
     r: 10;
-
 }
 .opacity {
-    fill:#BFBEBE;
+    fill: #bfbebe;
 }
 .pointH {
-    fill: #E85841;
+    fill: #e85841;
     transition: 600ms ease all;
     r: 10;
-    opacity: 1!important;
+    opacity: 1 !important;
     animation-duration: 2500ms;
     animation-iteration-count: infinite;
     animation-name: scale;
@@ -152,7 +133,7 @@ html, body  {
 @keyframes scale {
     0% {
         r: 10;
-        fill: #E85841;
+        fill: #e85841;
     }
     50% {
         r: 20;
@@ -160,14 +141,11 @@ html, body  {
     }
     100% {
         r: 10;
-        fill: #E85841;
+        fill: #e85841;
     }
 }
 
-
-
-
-.footer{
+.footer {
     z-index: 2;
     position: absolute;
     display: flex;
@@ -179,34 +157,27 @@ html, body  {
     padding-left: 10px;
     padding-right: 10px;
     height: 40px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 25px;
 }
 
-.footerI{
+.footerI {
     z-index: 2;
 
     width: 70px;
     height: 40px;
-   
-    
-    
 }
 .footerI .fas {
     color: white;
     transform: translateY(50%);
-
 }
 .footerI .fas:hover {
     color: rgb(51, 54, 177);
-    
 }
 
 .footer:hover {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
 }
-
-
 
 .header {
     z-index: 1;
@@ -215,40 +186,34 @@ html, body  {
     top: 1%;
     width: 250px;
     height: 40px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     display: flex;
     justify-content: space-around;
-
 }
-.header:hover{
-    background-color: rgba(0,0,0,0.6);
+.header:hover {
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
-.info{
+.info {
     z-index: 1;
-    top:60px;
+    top: 60px;
     position: absolute;
     right: 1%;
     width: 370px;
     transition: height 200ms ease;
     height: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: none;
-    
 }
 
 .infoExpand {
-   
     height: 290px;
     display: flex;
     flex-direction: column;
 }
 
-
-.exp_item{
-    
-    
+.exp_item {
     /* margin-top: 10px; */
     padding-left: 18px;
     width: 95%;
@@ -256,119 +221,112 @@ html, body  {
     align-items: baseline;
     display: grid;
     grid-template-columns: 6fr 2fr 1fr;
-    
+
     text-align: left;
     vertical-align: bottom;
-
 }
 
-
-#iconHead{
-    
+#iconHead {
     color: white;
-    display:inline-block;
+    display: inline-block;
     transform: translateY(28%);
-    
 }
-.exp_item:hover .fa-circle-notch:before{
+.exp_item:hover .fa-circle-notch:before {
     content: "\f054";
 }
 
-.exp_item:hover{
-    background-color: rgba(0,0,0,0.6);
+.exp_item:hover {
+    background-color: rgba(0, 0, 0, 0.6);
 }
-.inf-text{
+.inf-text {
     color: seashell;
 }
 
-
-#iconUP{
+#iconUP {
     align-self: center;
     color: seashell;
 }
 
 .headerContent {
-    
     flex-direction: row;
-    color: #FFFFFF;
+    color: #ffffff;
     align-self: center;
 }
-#icon{
-    color: #FFFFFF;
+#icon {
+    color: #ffffff;
     align-self: center;
 }
-
 
 #plan {
     transform: translateX(40px) translateY(13px);
 }
-.new{
+.new {
     bottom: 14vw;
 }
 
+.bottomInfo {
+    z-index: 1;
+    bottom: 0;
+    position: absolute;
+    left: 0px;
+    width: 100vw;
+    transition: height 200ms ease;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    height: 180px !important;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.bottomInfo__wrap {
+    display: flex;
+    width: 30000px;
+}
+.room {
+    position: relative;
+    z-index: 2;
+    margin-left: 1.6vw;
+    width: 100px;
+    margin-top: 1.6vw;
+    height: 10.5vw;
+    display: inline-block;
+    background-size: cover;
+    align-self: center;
+    cursor: pointer;
+    transition: ease 500ms all;
+    display: inline-block;
+}
 
-    .bottomInfo{
-        
-        z-index: 1;
-        bottom:0;
-        position: absolute;
-        left: 0px;
-        width: 100vw;
-        transition: height 200ms ease;
-        background-color: rgba(0,0,0,0.5);
-        display: none;
-        height: 180px!important;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        
-    
-    }
-    .bottomInfo__wrap {
-        display: flex;
-        width: 30000px;
-    }
-    .room{
-        position: relative;
-        z-index: 2;
-        margin-left: 1.6vw;
-        width: 100px;
-        margin-top: 1.6vw;
-        height: 10.5vw;
-        display: inline-block ;
-        background-size: cover;
-        align-self: center; 
-        cursor: pointer;
-        transition: ease 500ms all;
-        display: inline-block ;
-    }
-    
-    .room:hover{
-        border: 0px solid rgb(10, 10, 17);
-        transform: translateY(-5px); 
-        transition: ease 500ms all;
-    }
-    
-    .expand{
+.room:hover {
+    border: 0px solid rgb(29, 29, 32);
+    transform: translateY(-5px);
+    transition: ease 500ms all;
+}
+
+.expand {
     height: 130px;
     display: flex;
     justify-content: flex-start;
-    
-
 }
 
+@media (max-width: 900px) {
+    .map {
+        position: absolute;
+        width: 100% !important;
+        left: 0% !important;
+        top: 10% !important;
+    }
 
-@media   (max-width: 900px) {
     .compass1 {
         transform: scale(0.5) translateY(-100px) translateX(100px);
     }
     .svgimg {
         transform: translateX(53vw) rotate(-90deg) translateX(7vh);
-        width: 30vw; 
+        width: 30vw;
         height: auto;
     }
     .newPlan {
         left: -8vw;
-        width:auto ;
+        width: auto;
         top: 19vh;
         height: 200px;
         z-index: 1;
@@ -376,48 +334,38 @@ html, body  {
         transform: rotate(90deg);
     }
 
-.allbot {
-    width: 200vw;
-}
-.bottomInfo{
-   
-   
-    position: absolute;
-    left: 0px;
-    width: 30000px;
-    transition: height 200ms ease;
-    background-color: rgba(0,0,0,0.5);
-    display: none;
-    
-    
+    .allbot {
+        width: 200vw;
+    }
+    .bottomInfo {
+        position: absolute;
+        left: 0px;
+        width: 100vw;
+        transition: height 200ms ease;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+    }
 
-}
-
-.expand{
-    height: 250px;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
-}
-.room {
-    width: 220px;
-    height: 220px;
-    flex-shrink: 0;
-}
-.new{
-    bottom: 260px;
+    .expand {
+        height: 250px;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    .room {
+        width: 220px;
+        height: 220px;
+        flex-shrink: 0;
+    }
+    .new {
+        bottom: 190px;
+    }
 }
 
-}
-
-
-
-.footerContent{
+.footerContent {
     flex-direction: row;
-    color: #FFFFFF;
+    color: #ffffff;
     align-self: center;
 }
-
-
