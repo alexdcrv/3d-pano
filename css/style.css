@@ -292,7 +292,7 @@ body {
     background-size: cover;
     align-self: center;
     cursor: pointer;
-    transition: ease 500ms all;
+    transition: ease 400ms all;
     display: inline-block;
 }
 
