@@ -206,6 +206,10 @@ viewer.OrbitControls.maxFov = 50; // Set max zoom
 viewer.getControl().rotateSpeed *= 2; // rotation speed
 viewer.getControl().momentumScalingFactor *= 0.3; // inertia/spring after drag
 let footInfo = document.getElementById("footerContent");
+let bottom = document.getElementById("bottomInfo");
+let icon = document.getElementById("icon");
+let footer = document.getElementById("footer");
+let footerI = document.getElementById("footerI");
 // let radar = document.getElementById("radar");
 
 ///////////////////////////
@@ -367,9 +371,12 @@ panoArr.map((pano, i) => {
   footerArr[i].onclick = () => {
     viewer.setPanorama(panoArr[i]);
     changeTitle(i);
+    icon.className = "fas fa-arrow-up";
+    bottom.classList.remove("expand");
+    footer.classList.remove("new");
   };
   footerArr[i].addEventListener("mouseover", () => {
-    changeTitle(i);
+    // changeTitle(i);
   });
 });
 
@@ -392,12 +399,9 @@ viewer.addUpdateCallback(() => {
 });
 
 /////////////////////////////////////// css
-let bottom = document.getElementById("bottomInfo");
-let icon = document.getElementById("icon");
-let footer = document.getElementById("footer");
-let footerI = document.getElementById("footerI");
 
-footer.addEventListener("click", () => {
+
+footer.onclick = (e) => {
   if (icon.className === "fas fa-arrow-up") {
     bottom.classList.add("expand");
     footer.classList.add("new");
@@ -409,7 +413,7 @@ footer.addEventListener("click", () => {
     footer.classList.remove("new");
     // footerI.classList.remove("new");
   }
-});
+};
 
 //header
 
@@ -436,7 +440,8 @@ viewer.OrbitControls.addEventListener("change", () => {
   compass.style.transform = `rotateZ(${rotate - currentAngle}deg)`;
   // radar.style.transform =  `translateX(${(Number(dotCoordinates[currentPos].cx)/10)}px) translateY(${(Number(dotCoordinates[currentPos].cy))-150}px) rotateZ(${rotate - currentAngle}deg)`;
 });
-plan.onclick = () => {
+plan.onclick = (e) => {
+  e.preventDefault()
   map.classList.toggle("map");
 };
 
