@@ -172,9 +172,10 @@ html, body  {
     justify-content: space-around;
     left: 1%;
     bottom: 1%;
+    cursor: pointer;
     width: fit-content;
     padding-left: 10px;
-
+    padding-right: 10px;
     height: 40px;
     background-color: rgba(0,0,0,0.5);
     border-radius: 25px;
