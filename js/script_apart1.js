@@ -8,6 +8,38 @@ for (let i = 0; i < 30; i++) {
   pointsArr.push(document.getElementById(i + 1));
   footerArr.push(document.getElementById(`room${i + 1}`));
 }
+const text = [
+  `Въезд в поселок`,
+  `Контрольно-пропускной пункт`,
+  `Улица Buona (в районе таунхауса 22)`,
+  `Патио таунхауса № 22`,
+  `Улица Buona (в районе таунхауса 15)`,
+  `Патио таунхауса 15`,
+  `Патио таунхауса 60`,
+  `Вид с террасы (таунхаус 15)`,
+  `Улица Buona (в районе таунхауса 6)`,
+  `Патио таунхауса 6`,
+  `Патио таунхауса 29`,
+  `Улица Bella (в районе таунхауса 39)`,
+  `Вход в таунхаус 39`,
+  `Задний двор таунхауса 39 `,
+  `Задний двор таунхауса 40`,
+  `Улица Bella (в районе таунхауса 42)`,
+  `Задний двор таунхауса 42`,
+  `Вид с террасы таунхауса 42`,
+  `Улица Bella (в районе таунхауса 43)`,
+  `Задний двор таунхауса 43`,
+  `Улица Bella (в районе таунхаусов 48,49)`,
+  `Вход в таунхаус 48`,
+  `Вход в таунхаус 49`,
+  `Задний двор таунхауса 49`,
+  `Улица Bella (в районе таунхауса 52)`,
+  `Вход в таунхаус 52`,
+  `Пересечение улиц Bella и Buona, зона бассейнов`,
+  `Детская площадка `,
+  `Летний кинотеатр`,
+  `Ресторан вход с улицы`,
+];
 let currentAngle = 0;
 var lookAtPositions = [
   //0
@@ -78,124 +110,90 @@ const rightAngle = (dir, angle) => {
   });
 };
 rightAngle(0, -80);
-panoArr[0].link(panoArr[1], new THREE.Vector3(3700, 0, 300));
+const addInfospots = (arrow) => {
+  var infospot;
+  infospot = new PANOLENS.Infospot(350, PANOLENS.DataImage.Arrow);
+  infospot.position.set(arrow.cord[0], arrow.cord[1], arrow.cord[2]);
+  infospot.addHoverText(text[arrow.to]);
+  
+  infospot.addEventListener("click", function () {
+    infospot.addHoverText('');
+    viewer.setPanorama(panoArr[arrow.to]);
+  });
+  if(arrow.vision) {
+    rightAngle(arrow.pano, arrow.vision)
+  }
+  panoArr[arrow.pano].add(infospot);
+};
 
-rightAngle(1, 85);
-panoArr[1].link(panoArr[0], new THREE.Vector3(3700, 0, 100));
-panoArr[1].link(panoArr[2], new THREE.Vector3(700, 0, 4100));
-panoArr[1].link(panoArr[26], new THREE.Vector3(-1700, 0, 4100));
+const arrows = [
+  { pano: 0, to: 1, cord: [3700, 0, 300], vision:-80 },
+  { pano: 1, to: 0, cord: [3700, 0, 100], vision:85 },
+  { pano: 1, to: 2, cord: [700, 0, 4100]},
+  { pano: 1, to: 26, cord: [-1700, 0, 4100]},
+  { pano: 2, to: 1, cord: [3700, 0, 100], vision:-160 },
+  { pano: 2, to: 3, cord: [-1700, 0, 4100]},
+  { pano: 2, to: 4, cord: [-3300, 0, -100]},
+  { pano: 3, to: 2, cord: [3700, 0, 100], vision:-90  },
+  { pano: 4, to: 2, cord: [3100, 0, 100], vision:-150 },
+  { pano: 4, to: 5, cord: [-1700, 0, 3100] },
+  { pano: 4, to: 6, cord: [1700, 0, -3100] },
+  { pano: 4, to: 8, cord: [-3300, 220, -100] },
+  { pano: 5, to: 4, cord: [2700, 0, 2100], vision:-90},
+  { pano: 5, to: 7, cord: [3800, 0, 1000]},
+  { pano: 6, to: 4, cord: [4700, 0, 100], vision:90 },
+  { pano: 7, to: 4, cord: [-1400, 0, 100], vision:90 },
+  { pano: 8, to: 4, cord: [3100, 0, 100], vision:-160 },
+  { pano: 8, to: 9, cord: [-1700, 0, 4100]},
+  { pano: 8, to: 10, cord: [1700, 0, -3100] },
+  { pano: 8, to: 11, cord: [-3300, 220, -100] },
+  { pano: 9, to: 8, cord: [3300, 0, -100], vision:-90 },
+  { pano: 10, to: 8, cord: [3300, 0, -100], vision: 100 },
+  { pano: 11, to: 15, cord: [3100, 0, 100], vision:-170 },
+  { pano: 11, to: 14, cord: [1700, 0, -3100] },
+  { pano: 11, to: 12, cord: [-2700, 0, -2100] },
+  { pano: 11, to: 8, cord: [-3300, 220, -100] },
+  { pano: 12, to: 11, cord: [-2700, -500, 1100], vision:-75 },
+  { pano: 12, to: 13, cord: [2700, 0, 100] },
+  { pano: 13, to: 12, cord: [-700, 0, 2100], vision:-125 },
+  { pano: 14, to: 11, cord: [-2000, 0, 3100], vision:-125},
+  { pano: 15, to: 16, cord: [3100, 0, 100], vision: -75 },
+  { pano: 15, to: 11, cord: [-300, 0, -3100] },
+  { pano: 15, to: 18, cord: [100, 0, 3100] },
+  { pano: 16, to: 15, cord: [-300, 0, -3100], vision: 0 },
+  { pano: 16, to: 17, cord: [1300, 0, -3100] },
+  { pano: 17, to: 16, cord: [-800, 0, -300], vision: -180 },
+  { pano: 18, to: 19, cord: [2100, 0, -300], vision: -90 },
+  { pano: 18, to: 15, cord: [-1300, 0, -3400] },
+  { pano: 18, to: 20, cord: [700, 0, 3100] },
+  { pano: 19, to: 18, cord: [2200, 0, -1100], vision: 5  },
+  { pano: 20, to: 21, cord: [2100, 0, -1300], vision: -90 },
+  { pano: 20, to: 22, cord: [2100, 0, 300] },
+  { pano: 20, to: 18, cord: [-200, 100, -3500] },
+  { pano: 20, to: 24, cord: [100, -200, 2500] },
+  { pano: 21, to: 20, cord: [3000, -500, -800], vision: -90 },
+  { pano: 22, to: 20, cord: [3000, -500, 800] , vision: -90 },
+  { pano: 22, to: 23, cord: [-4100, 0, 1300] },
+  { pano: 23, to: 22, cord: [-1000, -500, -1800], vision: -15},
+  { pano: 24, to: 25, cord: [-3100, 0, 1300] , vision: 90 },
+  { pano: 24, to: 26, cord: [800, -400, -2500] },
+  { pano: 24, to: 20, cord: [600, -200, 2500]},
+  { pano: 25, to: 24, cord: [1800, -500, -1100], vision: 90 },
+  { pano: 26, to: 24, cord: [-3100, 0, 1300], vision: 90},
+  { pano: 26, to: 28, cord: [800, -400, -2500]  },
+  { pano: 26, to: 27, cord: [-800, -400, -2500] },
+  { pano: 26, to: 1, cord: [3000, -200, 0]},
+  { pano: 27, to: 26, cord: [1800, 0, 2500], vision: 90},
+  { pano: 27, to: 28, cord: [3000, -200, 0]  },
+  { pano: 28, to: 26, cord: [800, 0, 3500], vision: 90 },
+  { pano: 28, to: 29, cord: [3000, -100, -2000]},
+  { pano: 29, to: 28, cord: [2000, -100, 100], vision: -70 },
+];
+arrows.map((el) => {
+  return addInfospots(el);
+});
 
-rightAngle(2, -160);
-panoArr[2].link(panoArr[1], new THREE.Vector3(3700, 0, 100));
-panoArr[2].link(panoArr[3], new THREE.Vector3(-1700, 0, 4100));
-panoArr[2].link(panoArr[4], new THREE.Vector3(-3300, 0, -100));
 
-rightAngle(3, -90);
-panoArr[3].link(panoArr[2], new THREE.Vector3(3700, 0, 100));
-
-rightAngle(4, -150);
-panoArr[4].link(panoArr[2], new THREE.Vector3(3100, 0, 100));
-// panoArr[4].link(panoArr[7], new THREE.Vector3(-1700, 0, 4100));
-panoArr[4].link(panoArr[5], new THREE.Vector3(-1700, 0, 3100));
-panoArr[4].link(panoArr[6], new THREE.Vector3(1700, 0, -3100));
-panoArr[4].link(panoArr[8], new THREE.Vector3(-3300, 220, -100));
-
-rightAngle(5, -90);
-panoArr[5].link(panoArr[4], new THREE.Vector3(4700, 0, 100));
-
-rightAngle(6, 90);
-panoArr[6].link(panoArr[4], new THREE.Vector3(4700, 0, 100));
-
-rightAngle(7, 90);
-panoArr[7].link(panoArr[4], new THREE.Vector3(-1400, 0, 100));
-
-rightAngle(8, -160);
-panoArr[8].link(panoArr[4], new THREE.Vector3(3100, 0, 100));
-panoArr[8].link(panoArr[9], new THREE.Vector3(-1700, 0, 4100));
-panoArr[8].link(panoArr[10], new THREE.Vector3(1700, 0, -3100));
-panoArr[8].link(panoArr[11], new THREE.Vector3(-3300, 220, -100));
-
-rightAngle(9, -90);
-panoArr[9].link(panoArr[8], new THREE.Vector3(3300, 0, -100));
-rightAngle(10, 100);
-panoArr[10].link(panoArr[8], new THREE.Vector3(3300, 0, -100));
-
-rightAngle(11, -170);
-panoArr[11].link(panoArr[15], new THREE.Vector3(3100, 0, 100));
-panoArr[11].link(panoArr[14], new THREE.Vector3(1700, 0, -3100));
-panoArr[11].link(panoArr[12], new THREE.Vector3(-2700, 0, -2100));
-panoArr[11].link(panoArr[8], new THREE.Vector3(-3300, 220, -100));
-
-rightAngle(12, -75);
-panoArr[12].link(panoArr[11], new THREE.Vector3(-2700, -500, 1100));
-panoArr[12].link(panoArr[13], new THREE.Vector3(2700, 0, 100));
-
-rightAngle(13, -125);
-panoArr[13].link(panoArr[12], new THREE.Vector3(-700, 0, 2100));
-
-rightAngle(14, -125);
-panoArr[14].link(panoArr[11], new THREE.Vector3(-2000, 0, 3100));
-
-rightAngle(15, -75);
-panoArr[15].link(panoArr[16], new THREE.Vector3(3100, 0, 100));
-panoArr[15].link(panoArr[11], new THREE.Vector3(-300, 0, -3100));
-panoArr[15].link(panoArr[18], new THREE.Vector3(100, 0, 3100));
-
-rightAngle(16, 0);
-panoArr[16].link(panoArr[15], new THREE.Vector3(-300, 0, -3100));
-panoArr[16].link(panoArr[17], new THREE.Vector3(1300, 0, -3100));
-
-rightAngle(17, -180);
-panoArr[17].link(panoArr[16], new THREE.Vector3(-800, 0, -300));
-
-rightAngle(18, -90);
-panoArr[18].link(panoArr[19], new THREE.Vector3(2100, 0, -300));
-panoArr[18].link(panoArr[15], new THREE.Vector3(-1300, 0, -3400));
-panoArr[18].link(panoArr[20], new THREE.Vector3(700, 0, 3100));
-
-rightAngle(19, 5);
-panoArr[19].link(panoArr[18], new THREE.Vector3(2200, 0, -1100));
-
-rightAngle(20, -90);
-panoArr[20].link(panoArr[21], new THREE.Vector3(2100, 0, -1300));
-panoArr[20].link(panoArr[22], new THREE.Vector3(2100, 0, 300));
-panoArr[20].link(panoArr[18], new THREE.Vector3(-200, 100, -3500));
-panoArr[20].link(panoArr[24], new THREE.Vector3(100, -200, 2500));
-
-rightAngle(21, -90);
-panoArr[21].link(panoArr[20], new THREE.Vector3(3000, -500, -800));
-
-rightAngle(22, 90);
-panoArr[22].link(panoArr[20], new THREE.Vector3(3000, -500, 800));
-panoArr[22].link(panoArr[23], new THREE.Vector3(-4100, 0, 1300));
-
-rightAngle(23, -15);
-panoArr[23].link(panoArr[22], new THREE.Vector3(-1000, -500, -1800));
-
-rightAngle(24, 90);
-panoArr[24].link(panoArr[25], new THREE.Vector3(-3100, 0, 1300));
-panoArr[24].link(panoArr[26], new THREE.Vector3(800, -400, -2500));
-panoArr[24].link(panoArr[20], new THREE.Vector3(600, -200, 2500));
-
-rightAngle(25, 90);
-panoArr[25].link(panoArr[24], new THREE.Vector3(1800, -500, -1100));
-
-rightAngle(26, 90);
-panoArr[26].link(panoArr[24], new THREE.Vector3(-3100, 0, 1300));
-panoArr[26].link(panoArr[28], new THREE.Vector3(800, -400, -2500));
-panoArr[26].link(panoArr[27], new THREE.Vector3(-800, -400, -2500));
-panoArr[26].link(panoArr[1], new THREE.Vector3(3000, -200, 0));
-
-rightAngle(27, 90);
-panoArr[27].link(panoArr[26], new THREE.Vector3(1800, 0, 2500));
-panoArr[27].link(panoArr[28], new THREE.Vector3(3000, -200, 0));
-
-rightAngle(28, 90);
-panoArr[28].link(panoArr[26], new THREE.Vector3(800, 0, 3500));
-panoArr[28].link(panoArr[29], new THREE.Vector3(3000, -100, -2000));
-
-rightAngle(29, -70);
-panoArr[29].link(panoArr[28], new THREE.Vector3(2000, -100, 0));
 const viewer = new PANOLENS.Viewer({
   container: container,
   autoHideInfospot: false,
@@ -219,98 +217,7 @@ let footerI = document.getElementById("footerI");
 
 //guest
 const changeTitle = (i) => {
-  switch (i) {
-    case 0:
-      footInfo.innerHTML = `Въезд в поселок`;
-      break;
-    case 1:
-      footInfo.innerHTML = `Контрольно-пропускной пункт`;
-      break;
-    case 2:
-      footInfo.innerHTML = `Улица Buona (в районе таунхауса 22)`;
-      break;
-    case 3:
-      footInfo.innerHTML = `Патио таунхауса № 22`;
-      break;
-    case 4:
-      footInfo.innerHTML = `Улица Buona (в районе таунхауса 15)`;
-      break;
-    case 5:
-      footInfo.innerHTML = `Патио таунхауса 15`;
-      break;
-    case 6:
-      footInfo.innerHTML = `Патио таунхауса 60`;
-      break;
-    case 7:
-      footInfo.innerHTML = `Вид с террасы (таунхаус 15)`;
-      break;
-    case 8:
-      footInfo.innerHTML = `Улица Buona (в районе таунхауса 6)`;
-      break;
-    case 9:
-      footInfo.innerHTML = `Патио таунхауса 6`;
-      break;
-    case 10:
-      footInfo.innerHTML = `Патио таунхауса 29`;
-      break;
-    case 11:
-      footInfo.innerHTML = `Улица Bella (в районе таунхауса 39)`;
-      break;
-    case 12:
-      footInfo.innerHTML = `Вход в таунхаус 39`;
-      break;
-    case 13:
-      footInfo.innerHTML = `Задний двор таунхауса 39 `;
-      break;
-    case 14:
-      footInfo.innerHTML = `Задний двор таунхауса 40`;
-      break;
-    case 15:
-      footInfo.innerHTML = `Улица Bella (в районе таунхауса 42)`;
-      break;
-    case 16:
-      footInfo.innerHTML = `Задний двор таунхауса 42`;
-      break;
-    case 17:
-      footInfo.innerHTML = `Вид с террасы таунхауса 42`;
-      break;
-    case 18:
-      footInfo.innerHTML = `Улица Bella (в районе таунхауса 43)`;
-      break;
-    case 19:
-      footInfo.innerHTML = `Задний двор таунхауса 43`;
-      break;
-    case 20:
-      footInfo.innerHTML = `Улица Bella (в районе таунхаусов 48,49)`;
-      break;
-    case 21:
-      footInfo.innerHTML = `Вход в таунхаус 48`;
-      break;
-    case 22:
-      footInfo.innerHTML = `Вход в таунхаус 49`;
-      break;
-    case 23:
-      footInfo.innerHTML = `Задний двор таунхауса 49`;
-      break;
-    case 24:
-      footInfo.innerHTML = `Улица Bella (в районе таунхауса 52)`;
-      break;
-    case 25:
-      footInfo.innerHTML = `Вход в таунхаус 52`;
-      break;
-    case 26:
-      footInfo.innerHTML = `Пересечение улиц Bella и Buona, зона бассейнов`;
-      break;
-    case 27:
-      footInfo.innerHTML = `Детская площадка `;
-      break;
-    case 28:
-      footInfo.innerHTML = `Летний кинотеатр`;
-      break;
-    case 29:
-      footInfo.innerHTML = `Ресторан вход с улицы`;
-      break;
-  }
+  return (footInfo.innerHTML = text[i]);
 };
 // const dotCoordinates = [
 //   { cx: "361", cy: "361" },
@@ -400,7 +307,6 @@ viewer.addUpdateCallback(() => {
 
 /////////////////////////////////////// css
 
-
 footer.onclick = (e) => {
   if (icon.className === "fas fa-arrow-up") {
     bottom.classList.add("expand");
@@ -440,10 +346,10 @@ viewer.OrbitControls.addEventListener("change", () => {
   compass.style.transform = `rotateZ(${rotate - currentAngle}deg)`;
   // radar.style.transform =  `translateX(${(Number(dotCoordinates[currentPos].cx)/10)}px) translateY(${(Number(dotCoordinates[currentPos].cy))-150}px) rotateZ(${rotate - currentAngle}deg)`;
 });
-plan.onclick = (e) => {
-  e.preventDefault()
-  map.classList.toggle("map");
-};
+// plan.onclick = (e) => {
+//   e.preventDefault()
+//   map.classList.toggle("map");
+// };
 
 map.onclick = (e) => {
   console.log(e.target);
