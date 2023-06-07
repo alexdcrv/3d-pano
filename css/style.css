@@ -10,7 +10,10 @@ html, body  {
 
 }
 
-
+@font-face {
+    font-family: Roboto;
+    src: url('../fonts/Roboto-Regular.woff2');
+  }
 
 #container {
     width: 100%;
@@ -26,14 +29,50 @@ html, body  {
     width: 10%;
 
 }
-
-#map2 {
+.compass_text {
+      
+    padding: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 2px;
+}
+.compass1 {
+    z-index:1;
+    position: absolute;
+    top: 1%;
+    font-family: Roboto;
+    right: 0;
+    left: auto;
+    width:236px;
+    height: 220px;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    background-color: white;  
+    border-radius: 100%;
+    padding-bottom: 16px;
+    
+    color: black;
+    display: flex;
+    transition: all .3s ease-in-out;
+    transform: scale(0.75) translateY(-40px) translateX(30px);
+    
+    
+}
+.mapRadar {
     z-index:1;
     position: absolute;
     top: 1%;
     left: 1%;
     width: 20%;
-    
+    transition: all .3s ease-in-out;
+}
+#mapContainer {
+    z-index:1;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    width: 20%;
     transition: all .3s ease-in-out;
 
 }
@@ -72,7 +111,10 @@ html, body  {
 
 }
 
-
+#radar {
+    z-index:1;
+    
+}
 
  .st0:hover {
     fill: red;
@@ -84,15 +126,41 @@ html, body  {
 .st0{
     fill:#FFFFFF;
 }
-
+.point {
+    cursor: pointer;
+}
 .point:hover{
-    fill: #F7C737
-}
+    fill: #E85841;
+    transition: 600ms ease all;
+    r: 10;
 
+}
+.opacity {
+    fill:#BFBEBE;
+}
 .pointH {
-    fill: #F7C737
+    fill: #E85841;
+    transition: 600ms ease all;
+    r: 10;
+    opacity: 1!important;
+    animation-duration: 2500ms;
+    animation-iteration-count: infinite;
+    animation-name: scale;
 }
-
+@keyframes scale {
+    0% {
+        r: 10;
+        fill: #E85841;
+    }
+    50% {
+        r: 20;
+        fill: #e9a89e;
+    }
+    100% {
+        r: 10;
+        fill: #E85841;
+    }
+}
 
 
 
@@ -104,7 +172,9 @@ html, body  {
     justify-content: space-around;
     left: 1%;
     bottom: 1%;
-    width: 150px;
+    width: fit-content;
+    padding-left: 10px;
+
     height: 40px;
     background-color: rgba(0,0,0,0.5);
     border-radius: 25px;
@@ -112,11 +182,7 @@ html, body  {
 
 .footerI{
     z-index: 2;
-    position: absolute;
-    display: flex;
-    justify-content: space-around;
-    left: 185px;
-    bottom: 2%;
+
     width: 70px;
     height: 40px;
    
@@ -230,7 +296,9 @@ html, body  {
 }
 
 
-
+#plan {
+    transform: translateX(40px) translateY(13px);
+}
 .new{
     bottom: 14vw;
 }
@@ -242,7 +310,7 @@ html, body  {
         bottom:0;
         position: absolute;
         left: 0px;
-        width: 150vw;
+        width: 100vw;
         transition: height 200ms ease;
         background-color: rgba(0,0,0,0.5);
         display: none;
@@ -287,7 +355,9 @@ html, body  {
 
 
 @media   (max-width: 900px) {
-    
+    .compass1 {
+        transform: scale(0.5) translateY(-100px) translateX(100px);
+    }
     .svgimg {
         transform: translateX(53vw) rotate(-90deg) translateX(7vh);
         width: 30vw; 
